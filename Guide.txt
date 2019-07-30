@@ -1,0 +1,196 @@
+// Basic
+sudo apt-get update
+sudo apt-get install guake tmux zsh vim software-properties-common htop speedometer nmap
+
+// Tmux Configuration < preset files >
+sudo cp .tmux.conf /home/toncho/.tmux.conf
+sudo cp -R .tmux/ /home/toncho/.tmux/
+
+// Tmux Mem Cpu Load Master
+sudo apt-get install cmake gcc g++
+cd tmux-mem-cpu-load-master/
+cmake .
+make .
+su -
+cd tmux-mem-cpu-load-master/
+make install
+logout
+
+// Apache2
+sudo apt-get install apache2
+
+// Apache2 Configuration < quick access to web server >
+cd /etc/apache2/sites-avaible/
+sudo vim name.conf
+// Standard Configuration
+	<VirtualHost *:80>
+		# The ServerName directive sets the request scheme, hostname and port that
+		# the server uses to identify itself. This is used when creating
+		# redirection URLs. In the context of virtual hosts, the ServerName
+		# specifies what hostname must appear in the request's Host: header to
+		# match this virtual host. For the default virtual host (this file) this
+		# value is not decisive as it is used as a last resort host regardless.
+		# However, you must set it for any further virtual host explicitly.
+		#ServerName www.example.com
+
+		ServerAdmin webmaster@localhost
+		ServerName  name.local
+		ServerAlias www.name.com
+		DocumentRoot /var/www/html/name/
+
+		CustomLog /var/log/apache2/name.log combined
+	  	ErrorLog /var/log/apache2/name-error.log
+
+		# Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
+		# error, crit, alert, emerg.
+		# It is also possible to configure the loglevel for particular
+		# modules, e.g.
+		#LogLevel info ssl:warn
+		DirectoryIndex index.html
+	 	<Directory /var/www/html/name/ >
+			Options Indexes FollowSymLinks MultiViews
+			AllowOverride all
+			Order allow,deny
+			allow from all
+		</Directory>
+
+		ErrorLog ${APACHE_LOG_DIR}/error.log
+		CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+		# For most configuration files from conf-available/, which are
+		# enabled or disabled at a global level, it is possible to
+		# include a line for only one particular virtual host. For example the
+		# following line enables the CGI configuration for this host only
+		# after it has been globally disabled with "a2disconf".
+		#Include conf-available/serve-cgi-bin.conf
+	</VirtualHost>
+
+	# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+//
+sudo vim /etc/hosts
+	127.0.0.1	name.local
+sudo service apache2 restart
+
+// PHP 5.6
+sudo add-apt-repository ppa:ondrej/php
+sudo apt-get update
+sudo apt-get install php5.6 php5.6-cli php5.6-cgi php5.6-dev php5.6-pgsql php5.6-gd php5.6-mcrypt php-pear zend-framework zend-framework-bin libapache2-mod-php5.6 php5.6-mbstring php5.6-mysql php5.6-xml
+
+// PHP configuration < /etc/php/5.6/apache2/php.ini >
+202		short_open_tag = On
+261		zlib.output_compress = On
+303		disable_functions = 												BORRAR TODO
+449		error_reporting = E_ALL & ~E_DEPRECATED & ~E_NOTICE & ~E_WARNING
+466		display_errors = On
+477 	display_startup_errors = On
+538		html_errors = Off
+574		error_log = syslog                                            		DESCOMENTAR
+820     upload_max_filesize = 50M
+835		allow_url_include = On
+889		extension=php_curl.dll
+898 	extension=php_mbstring.dll
+900		extension=php_mysql.dll
+901		extension=php_mysqli.dll
+903		extension=php_openssl.dll
+904		extension=php_pdo_firebird.dll
+905		extension=php_pdo_mysql.dll
+908		extension=php_pdo_psql.dll
+910		extension=php_psql.dll
+// reboot sudo service apache2 restart
+
+// MySQL
+sudo apt-get install mysql-client mysql-server
+
+// PostgreSQL
+sudo vi /etc/apt/sources.list.d/pgdg.list
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install postgresql postgresql-contrib pgadmin3
+
+// Configuration PostgresSQL
+sudo su postgres
+psql
+create user "MiUNE" with superuser password 'tucontrasena';
+create database "MiUNE" with owner "MiUNE";
+psql "MiUNE" -f MiUNE.sql
+psql -U MiUNE -d MiUNE -h localhost
+show search_path;
+alter user "MiUNE" set search_path = produccion,public;
+set search_path to "MiUNE",produccion;
+sudo service apache2 restart
+sudo service postgresql restart
+
+// Sublime Text
+sudo add-apt-repository ppa:webupd8team/sublime-text-3
+sudo apt-get update
+sudo apt-get install sublime-text
+
+// Git
+sudo apt-get install git openssh-client openssh-server
+git config --global user.name "Alton Bell Smythe"
+git config --global user.email abellsmythe@gmail.com
+
+// Generate SSH Key
+ssh-keygen -t rsa
+vim /home/toncho/.ssh/id_rsa.pub
+
+// Composer < https://getcomposer.org/ >
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('SHA384', 'composer-setup.php') === '55d6ead61b29c7bdee5cccfb50076874187bd9f21f65d8991d46ec5cc90518f447387fb9f76ebae1fbbacf329e583e30') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+sudo mv composer.phar /usr/local/bin/composer
+php -r "unlink('composer-setup.php');"
+
+// Android SDK < https://developer.android.com/studio/install.html?hl=es-419 >
+download zip file
+unzip file
+sudo mv ~/Downloads/android-studio /usr/local
+sudo apt-get install lib32z1 lib32ncurses5 lib32stdc++6
+cd /usr/local/android-studio/bin
+./studio.sh
+GUI - i don't have previus android studio - standard install - finish install
+sudo vim ~/.bashrc
+	export ANDROID_HOME=/home/toncho/Android/Sdk
+	export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+sudo reboot
+
+// Ionic < requiered Android SDK >
+sudo apt-get install nodejs npm default-jdk ant
+sudo ln -s /usr/bin/nodejs /usr/bin/node
+sudo npm install bower -g
+sudo npm install gulp gulp-cli -g
+sudo npm install cordova phonegap -g
+sudo npm install ionic -g
+
+// Ionic Project
+ionic start -a "Human Name" -i app.example.name name template
+// name       => name of directory		/		template   => (blank, tabs, sidemenu) / ionic templates
+// Run Project
+ionic serve (localhost:8100)
+ionic serve -p 8399
+// Platforms
+ionic platforms
+ionic platform add android
+// Build
+ionic build android
+
+// Lumen < requirements met >
+// First way
+composer global require "laravel/lumen-installer"
+lumen new blog
+// Second way < my favorite >
+composer create-project --prefer-dist laravel/lumen blog
+sudo vim .env
+	APP_ENV=local							ENVIRONMENT
+	APP_DEBUG=true
+	APP_KEY=								SET KEY
+
+	DB_CONNECTION=mysql						DBMS
+	DB_HOST=localhost						HOST
+	DB_PORT=3306							PORT
+	DB_DATABASE=homestead					DATA BASE NAME
+	DB_USERNAME=homestead					USER NAME
+	DB_PASSWORD=secret						USER PASSWORD
+
+	CACHE_DRIVER=memcached
+	QUEUE_DRIVER=sync

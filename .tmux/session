@@ -1,0 +1,7 @@
+selectp -t 0
+splitw -h -p 25 'speedometer -r wlp1s0 -t wlp1s0 -k 16'
+selectp -t 0
+splitw -v -p 12 'htop'
+selectp -t 0
+splitw -h -p 33 'zsh'
+selectp -t 0
