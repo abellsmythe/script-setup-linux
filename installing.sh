@@ -73,7 +73,7 @@ echo -e "\t\t${LIGHT_YELLOW}Tmux${NO_COLOR}"
 echo -e "\t\t${LIGHT_YELLOW}Vim${NO_COLOR}"
 echo -e "\t\t${LIGHT_YELLOW}Zsh${NO_COLOR}\n"
 echo -e "\t\t\t${LIGHT_RED} PLEASE ENTER THE SUDO PASSWORD.${NO_COLOR}"
-echo -e "\t\t\t${LIGHT_RED} AND ACCEPT IF IS NECESARY.${NO_COLOR}"
+echo -e "\t\t\t${LIGHT_RED} AND ACCEPT IF IS NECESSARY.${NO_COLOR}"
 echo -e "----------------------------------------------------------------------------------------\n"
 
 sudo apt-get install guake htop nmap software-properties-common speedometer tmux vim zsh
@@ -113,7 +113,7 @@ echo -e "\t\t\t${LIGHT_CYAN} INSTALLING TMUX PROGRAMS.${NO_COLOR}"
 echo -e "\n\t\t${LIGHT_YELLOW}Cmake${NO_COLOR}"
 echo -e "\t\t${LIGHT_YELLOW}Gcc${NO_COLOR}"
 echo -e "\t\t${LIGHT_YELLOW}G++${NO_COLOR}\n"
-echo -e "\t\t\t${LIGHT_RED} ACCEPT IF IS NECESARY.${NO_COLOR}"
+echo -e "\t\t\t${LIGHT_RED} ACCEPT IF IS NECESSARY.${NO_COLOR}"
 echo -e "----------------------------------------------------------------------------------------\n"
 
 sudo apt-get install cmake gcc g++
@@ -169,7 +169,7 @@ echo -e "\t\t${LIGHT_YELLOW}Php-pear ${NO_COLOR}"
 echo -e "\t\t${LIGHT_YELLOW}libapache2-mod-php5.6$ {NO_COLOR}"
 echo -e "\t\t${LIGHT_YELLOW}zend-framework$ {NO_COLOR}"
 echo -e "\t\t${LIGHT_YELLOW}Zend-framework-bin${NO_COLOR}\n"
-echo -e "\t\t\t${LIGHT_RED} ACCEPT IF IS NECESARY.${NO_COLOR}"
+echo -e "\t\t\t${LIGHT_RED} ACCEPT IF IS NECESSARY.${NO_COLOR}"
 echo -e "----------------------------------------------------------------------------------------\n"
 
 sudo add-apt-repository ppa:ondrej/php
@@ -198,7 +198,7 @@ echo -e "-----------------------------------------------------------------------
 echo -e "\t\t\t${LIGHT_CYAN} INSTALLING MYSQL PROGRAMS.${NO_COLOR}"
 echo -e "\n\t\t${LIGHT_YELLOW}Mysql-client${NO_COLOR}"
 echo -e "\t\t${LIGHT_YELLOW}Mysql-server${NO_COLOR}\n"
-echo -e "\t\t\t${LIGHT_RED} ACCEPT IF IS NECESARY.${NO_COLOR}"
+echo -e "\t\t\t${LIGHT_RED} ACCEPT IF IS NECESSARY.${NO_COLOR}"
 echo -e "----------------------------------------------------------------------------------------\n"
 
 sudo apt-get install mysql-client mysql-server
@@ -216,10 +216,10 @@ echo -e "\t\t\t${LIGHT_CYAN} INSTALLING POSTGRESQL PROGRAMS.${NO_COLOR}"
 echo -e "\n\t\t${LIGHT_YELLOW}Postgresql${NO_COLOR}"
 echo -e "\t\t${LIGHT_YELLOW}Postgresql-contrib${NO_COLOR}"
 echo -e "\t\t${LIGHT_YELLOW}Pgadmin3${NO_COLOR}\n"
-echo -e "\t\t\t${LIGHT_RED} ACCEPT IF IS NECESARY.${NO_COLOR}"
+echo -e "\t\t\t${LIGHT_RED} ACCEPT IF IS NECESSARY.${NO_COLOR}"
 echo -e "----------------------------------------------------------------------------------------\n"
 
-sudo vi /etc/apt/sources.list.d/pgdg.list
+sudo touch /etc/apt/sources.list.d/pgdg.list
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install postgresql postgresql-contrib pgadmin3
@@ -253,7 +253,6 @@ echo -e "\t\t\t${LIGHT_CYAN} GENERATE SSH KEY.${NO_COLOR}"
 echo -e "----------------------------------------------------------------------------------------\n"
 
 ssh-keygen -t rsa
-vim $HOME.ssh/id_rsa.pub
 
 echo -e "----------------------------------------------------------------------------------------"
 echo -e "\t\t\t${LIGHT_GREEN} SSH KEY SUCCESSFUL GENERATED.${NO_COLOR}"
@@ -288,7 +287,7 @@ echo -e "\t\t\t${LIGHT_CYAN} INSTALLING NODEJS.${NO_COLOR}"
 echo -e "\n\t\t${LIGHT_YELLOW}Nodejs${NO_COLOR}"
 echo -e "\t\t${LIGHT_YELLOW}Npm${NO_COLOR}"
 echo -e "\t\t${LIGHT_YELLOW}Default-jdk${NO_COLOR}"
-echo -e "\t\t\t${LIGHT_RED} ACCEPT IF IS NECESARY.${NO_COLOR}"
+echo -e "\t\t\t${LIGHT_RED} ACCEPT IF IS NECESSARY.${NO_COLOR}"
 echo -e "----------------------------------------------------------------------------------------\n"
 
 sudo apt-get install nodejs npm default-jdk
@@ -311,7 +310,7 @@ echo -e "-----------------------------------------------------------------------
 echo -e "\t\t\t${LIGHT_CYAN} INSTALLING GULP.${NO_COLOR}"
 echo -e "\t\t${LIGHT_YELLOW}Gulp${NO_COLOR}"
 echo -e "\t\t${LIGHT_YELLOW}Gulp-cli${NO_COLOR}"
-echo -e "\t\t\t${LIGHT_RED} ACCEPT IF IS NECESARY.${NO_COLOR}"
+echo -e "\t\t\t${LIGHT_RED} ACCEPT IF IS NECESSARY.${NO_COLOR}"
 echo -e "----------------------------------------------------------------------------------------\n"
 
 sudo npm install gulp gulp-cli -g
